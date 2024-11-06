@@ -32,6 +32,20 @@ export const signUp = async (req: Request, res: Response, next: NextFunction): P
             return res.status(400).json({ msg: "Invalid role" });
         }
 
+        if(role === 'aluno' && disciplina) {
+            return res.status(400).json({msg: "Aluno cannot has disciplina"});
+        }
+
+        if(role === 'professor' && matricula) {
+            return res.status(400).json({msg: "Professor cannot has matricula"});
+        }
+
+        const isEmailExists = await User.findOne({where: {email}});
+
+        if (isEmailExists) {
+            return res.status(400).json({msg: "User already exists"});
+        }
+
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = await User.create({ name, email, telefone, password: hashedPassword });
 
