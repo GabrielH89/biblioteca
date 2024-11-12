@@ -6,6 +6,7 @@ const router = express.Router();
 
 //Routes for user
 router.post("/signup", userContoller.signUp);
-router.delete("/users/:idUser", authenticateToken, userContoller.deleteUserById);
+router.post("/signin", userContoller.signIn);
+router.delete("/deleteuser", authenticateToken, userContoller.deleteUserById);
 
 export default router;
