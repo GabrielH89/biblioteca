@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 export interface CustomRequest extends Request {
     user?: {
         idUser: number;
+        role: string; // Adiciona o papel do usuário
     };
 }
 
@@ -13,17 +14,18 @@ export const authenticateToken = (req: CustomRequest, res: Response, next: NextF
 
     if (!token) {
         res.sendStatus(401); // Não autorizado
-        return; // Retorna para garantir que não continue
+        return;
     }
 
     jwt.verify(token, process.env.JWT_KEY || 'default_secret', (err, decoded) => {
         if (err) {
             res.sendStatus(403); // Proibido
-            return; // Retorna para garantir que não continue
+            return;
         }
 
         if (decoded && typeof decoded !== 'string') {
-            req.user = { idUser: (decoded as { id: number }).id }; // Adiciona a informação do usuário à requisição
+            const { id, role } = decoded as { id: number; role: string };
+            req.user = { idUser: id, role }; // Adiciona o ID e o papel do usuário à requisição
         }
 
         next(); // Passa para o próximo middleware/rota
