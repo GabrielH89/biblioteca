@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import {User, Aluno, Professor} from '../../../models';
+import {User} from '../../../models';
 import { CustomRequest } from '../../middlewares/authAuthentication';
 
 export const deleteUserById = async (req: CustomRequest, res: Response, next: NextFunction): Promise<any> => {

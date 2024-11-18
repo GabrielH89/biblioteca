@@ -11,6 +11,7 @@ router.post("/users/register", userContoller.signUp);
 router.post("/users/login", userContoller.signIn);
 router.delete("/users/delete", authenticateToken, userContoller.deleteUserById);
 
-router.get("/books", authenticateToken, checkRole(["professor"]), livroController.createForProfessor)
-router.get("/booksAluno", authenticateToken, checkRole(["aluno"]), livroController.createForAluno)
+//Routes for livro
+router.post("/livros", authenticateToken, checkRole(["professor"]), livroController.create);
+
 export default router;

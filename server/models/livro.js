@@ -1,28 +1,56 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Livro extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      // Exemplo de associação, caso haja uma relação com o professor
+      Livro.belongsTo(models.Professor, {
+        foreignKey: 'idProfessor',  // Correspondente à chave estrangeira
+        as: 'professor'  // Alias para o relacionamento
+      });
     }
   }
+
   Livro.init({
-    titulo: DataTypes.STRING,
-    autor: DataTypes.STRING,
-    capa: DataTypes.STRING,
-    editora: DataTypes.STRING,
-    ano_publicacao: DataTypes.INTEGER,
-    genero: DataTypes.STRING
+    idLivro: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
+    titulo: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    autor: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    capa: {
+      type: DataTypes.STRING,
+      allowNull: true  // Permitindo null caso o campo não seja obrigatório
+    },
+    editora: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    ano_publicacao: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    genero: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    idProfessor: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Livro',
+    tableName: 'livro',  // Nome da tabela no banco de dados
   });
+
   return Livro;
 };

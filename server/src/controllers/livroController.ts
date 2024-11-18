@@ -1,4 +1,3 @@
-import { createForAluno } from './livro/createForAluno';
-import { createForProfessor } from './livro/createForProfessor';
+import { create } from './livro/create';
 
-export default {createForProfessor, createForAluno};
+export default {create};
