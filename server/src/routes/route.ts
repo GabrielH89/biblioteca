@@ -13,5 +13,8 @@ router.delete("/users/delete", authenticateToken, userContoller.deleteUserById);
 
 //Routes for livro
 router.post("/livros", authenticateToken, checkRole(["professor"]), livroController.create);
+router.delete("/livros", authenticateToken, checkRole(["professor"]), livroController.deleteAll);
+router.delete("/livros/:id", authenticateToken, checkRole(["professor"]), livroController.deleteById);
+router.get("/livros", authenticateToken, livroController.getAll);
 
 export default router;
