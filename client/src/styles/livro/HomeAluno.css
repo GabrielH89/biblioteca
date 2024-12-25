@@ -1,0 +1,50 @@
+.homeAluno {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .livro-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px; /* Espaçamento entre os livros */
+  }
+  
+  .livro-card {
+    width: 30%; /* Cada livro ocupará 30% do espaço, permitindo 3 livros por linha */
+    box-sizing: border-box;
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .livro-capa {
+    width: 100%;
+    height: auto;
+    max-height: 300px; /* Defina a altura máxima da imagem */
+    object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+  
+  p {
+    margin: 5px 0;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .livro-card {
+      width: 48%; /* Dois livros por linha em telas menores */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .livro-card {
+      width: 100%; /* Um livro por linha em telas pequenas */
+    }
+  }
+  
