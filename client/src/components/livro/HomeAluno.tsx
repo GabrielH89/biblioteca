@@ -18,6 +18,7 @@ interface Livro {
 function HomeAluno() {
   const [livros, setLivros] = useState<Livro[]>([]);  
   const [error, setError] = useState("");
+ 
   useEffect(() => {
     const fetchLivros = async () => {
       try{
