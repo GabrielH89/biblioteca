@@ -22,11 +22,11 @@ function Login() {
                     password: password
                 });
                 console.log("Response: " + response.data);
-                const {token, role} = response.data; // Supondo que o token esteja na resposta como 'token'
+                const {token, role, idUser} = response.data; // Supondo que o token esteja na resposta como 'token'
                 localStorage.setItem('token', token);
                 localStorage.setItem('role', role);
-                console.log(token)
-                console.log(role)
+                localStorage.setItem('idUser', idUser);
+                
                 if(role === "aluno") {
                     navigate("/homealuno");
                 }else if(role === "professor") {

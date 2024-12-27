@@ -1,140 +1,142 @@
 .homeProfessor {
-    display: flex;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    position: relative;
-  }
-  
-  .toggle-sidebar {
-    position: fixed;
-    top: 0px;
-    left: 10px;
-    z-index: 1000;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: transform 0.3s ease;
-  }
-  
-  .toggle-sidebar:hover {
-    transform: scale(1.1);
-  }
-  
+  display: flex;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  position: relative;
+}
+
+.toggle-sidebar {
+  position: fixed;
+  top: 0px;
+  left: 10px;
+  z-index: 1000;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+.toggle-sidebar:hover {
+  transform: scale(1.1);
+}
+
+.sidebar {
+  width: 240px;
+  background-color: #f4f4f4;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #ddd;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(0);
+  margin-top: 10px;
+}
+
+.homeProfessor:not(.sidebar-visible) .sidebar {
+  transform: translateX(-100%);
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 15px;
+}
+
+.sidebar button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.sidebar .logout-container {
+  margin-top: 20px;
+  align-self: flex-start;
+}
+
+.sidebar button.logout {
+  background-color: #dc3545;
+}
+
+.sidebar button:hover {
+  opacity: 0.9;
+}
+
+.content {
+  flex: 1;
+  margin-left: 250px;
+  padding: 20px;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.livro-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: flex-start;
+  transition: justify-content 0.3s ease;
+}
+
+/* Quando o sidebar for fechado, centraliza os livros */
+.homeProfessor:not(.sidebar-visible) .livro-container {
+  justify-content: center;
+}
+
+.livro-card {
+  flex: 1 1 300px; /* Cada livro terá uma largura mínima de 300px */
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.livro-card:hover {
+  cursor: pointer;
+  transform: scale(1.04);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.homeProfessor:not(.sidebar-visible) .content {
+  margin-left: 0;
+}
+
+@media (max-width: 768px) {
   .sidebar {
-    width: 240px;
-    background-color: #f4f4f4;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-right: 1px solid #ddd;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    transition: transform 0.3s ease-in-out;
-    transform: translateX(0);
-    margin-top: 10px;
+    width: 200px;
   }
-  
-  .homeProfessor:not(.sidebar-visible) .sidebar {
-    transform: translateX(-100%);
-  }
-  
-  .sidebar ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .sidebar li {
-    margin-bottom: 15px;
-  }
-  
-  .sidebar button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
-  .sidebar button.logout {
-    background-color: #dc3545;
-    margin-top: auto;
-  }
-  
-  .sidebar button:hover {
-    opacity: 0.9;
-  }
-  
-  .content {
-    flex: 1;
-    margin-left: 250px;
-    padding: 20px;
-    transition: margin-left 0.3s ease-in-out;
-  }
-  
-  .livro-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: flex-start;
-    transition: justify-content 0.3s ease;
-  }
-  
-  /* Quando o sidebar for fechado, centraliza os livros */
-  .homeProfessor:not(.sidebar-visible) .livro-container {
-    justify-content: center;
-  }
-  
+
   .livro-card {
-    flex: 1 1 300px; /* Cada livro terá uma largura mínima de 300px */
-    max-width: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1 1 100%; /* Nos dispositivos menores, cada livro ocupará 100% da largura */
   }
-  
-  .livro-card:hover {
-    cursor: pointer;
-    transform: scale(1.04);
-    box-shadow: 10px 10px 10px solid black;
+
+  .livro-container {
+    justify-content: flex-start; /* Certifica-se de que a linha começa na esquerda */
   }
-  
-  .homeProfessor:not(.sidebar-visible) .content {
-    margin-left: 0;
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
   }
-  
-  @media (max-width: 768px) {
-    .sidebar {
-      width: 200px;
-    }
-  
-    .livro-card {
-      flex: 1 1 100%; /* Nos dispositivos menores, cada livro ocupará 100% da largura */
-    }
-  
-    .livro-container {
-      justify-content: flex-start; /* Certifica-se de que a linha começa na esquerda */
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .sidebar {
-      width: 100%;
-    }
-  }
-  
+}
