@@ -1,0 +1,73 @@
+
+/* Estilo geral para o container */
+.personal-info-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo para o título */
+.personal-info-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Estilo para o formulário */
+.personal-info-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.personal-info-form input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    color: #333;
+    font-size: 16px;
+    pointer-events: none; /* Impede interação para campos somente leitura */
+}
+
+.personal-info-form input[readonly] {
+    background-color: #e9ecef;
+    color: #6c757d;
+    border-color: #ddd;
+}
+
+/* Ajustes para dispositivos móveis */
+@media (max-width: 768px) {
+    .personal-info-container {
+        padding: 15px;
+    }
+
+    .personal-info-form input {
+        font-size: 14px;
+    }
+
+    .personal-info-form label {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .personal-info-container {
+        padding: 10px;
+    }
+
+    .personal-info-container h2 {
+        font-size: 18px;
+    }
+
+    .personal-info-form input {
+        padding: 8px;
+    }
+}

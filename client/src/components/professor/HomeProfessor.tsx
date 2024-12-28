@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import AddFormLivro from "../livro/AddFormLivro"; // Importe o componente de formulário
 import '../../styles/livro/HomeProfessor.css';
+import { Link } from "react-router-dom";
 
 interface Livro {
   idLivro: number;
@@ -57,7 +58,7 @@ function HomeProfessor() {
         <div className="sidebar">
           <ul>
             <li><button onClick={toggleAddForm}>Cadastrar Livros</button></li>
-            <li><button>Informações Pessoais</button></li>
+            <li><Link to={"/personal-info"}><button>Informações Pessoais</button></Link></li>
           </ul>
           <button className="logout">Sair</button>
         </div>
