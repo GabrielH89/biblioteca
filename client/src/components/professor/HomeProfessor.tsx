@@ -41,7 +41,6 @@ function HomeProfessor() {
     fetchLivros();
   }, []);
 
-  // Função para alternar entre o formulário e a lista de livros
   const toggleAddForm = () => {
     setIsAddFormVisible(!isAddFormVisible);
   };
@@ -57,15 +56,26 @@ function HomeProfessor() {
       {isSidebarVisible && (
         <div className="sidebar">
           <ul>
-            <li><button onClick={toggleAddForm}>Cadastrar Livros</button></li>
-            <li><Link to={"/personal-info"}><button>Informações Pessoais</button></Link></li>
+            <li>
+              <button onClick={toggleAddForm}>Cadastrar Livros</button>
+            </li>
+            <li>
+              <Link to={"/personal-info"}>
+                <button>Informações Pessoais</button>
+              </Link>
+            </li>
           </ul>
           <button className="logout">Sair</button>
         </div>
       )}
       <div className="content">
         {isAddFormVisible ? (
-          <AddFormLivro /> // Mostrar o formulário de adicionar livro
+          <div className="popup">
+            <button className="close-popup" onClick={toggleAddForm}>
+              Fechar
+            </button>
+            <AddFormLivro onClose={toggleAddForm} /> {/* Passando função de fechamento */}
+          </div>
         ) : (
           <>
             <h2>Livros Disponíveis</h2>
