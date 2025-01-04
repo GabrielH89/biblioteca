@@ -121,6 +121,50 @@
   margin-left: 0;
 }
 
+.logout-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  z-index: 1000;
+  border-radius: 8px;
+}
+
+.popup-content {
+  text-align: center;
+}
+
+.confirm-btn,
+.cancel-btn {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirm-btn {
+  background-color: #d9534f;
+  color: white;
+}
+
+.confirm-btn:hover {
+  background-color: #B22222;
+}
+
+.cancel-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #00008B;
+}
+
+
 @media (max-width: 768px) {
   .sidebar {
     width: 200px;

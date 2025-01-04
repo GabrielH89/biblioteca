@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import AddFormLivro from "../livro/AddFormLivro"; // Importe o componente de formulário
 import '../../styles/livro/HomeProfessor.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface Livro {
   idLivro: number;
@@ -22,6 +22,9 @@ function HomeProfessor() {
   const [error, setError] = useState("");
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
   const [isAddFormVisible, setIsAddFormVisible] = useState(false); // Controle de exibição do formulário
+  const [confirmLogout, setConfirmLogout] = useState(false); 
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchLivros = async () => {
@@ -45,6 +48,21 @@ function HomeProfessor() {
     setIsAddFormVisible(!isAddFormVisible);
   };
 
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("idUser");
+    navigate("/");
+  }
+
+  const openLogoutPopup = () => {
+    setConfirmLogout(true);
+  }
+
+  const closeLogoutPopup = () => {
+    setConfirmLogout(false);
+  }
+
   return (
     <div className={`homeProfessor ${isSidebarVisible ? "sidebar-visible" : ""}`}>
       <button
@@ -65,7 +83,7 @@ function HomeProfessor() {
               </Link>
             </li>
           </ul>
-          <button className="logout">Sair</button>
+          <button className="logout" onClick={openLogoutPopup}>Sair</button>
         </div>
       )}
       <div className="content">
@@ -103,6 +121,15 @@ function HomeProfessor() {
           </>
         )}
       </div>
+      {confirmLogout && (
+        <div className="logout-popup">
+          <div className="popup-content">
+            <p>Tem certeza que deseja sair da conta?</p>
+            <button className="confirm-btn" onClick={logout}>Sim</button>
+            <button className="cancel-btn" onClick={closeLogoutPopup}>Não</button>
+          </div>  
+        </div>
+      )}
     </div>
   );
 }
