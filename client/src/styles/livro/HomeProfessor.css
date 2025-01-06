@@ -133,11 +133,11 @@
   border-radius: 8px;
 }
 
-.popup-content {
+.logout-popup .popup-content {
   text-align: center;
 }
 
-.confirm-btn,
+.logout-popup .confirm-btn,
 .cancel-btn {
   margin: 10px;
   padding: 10px 20px;
@@ -146,21 +146,21 @@
   cursor: pointer;
 }
 
-.confirm-btn {
+.logout-popup .confirm-btn {
   background-color: #d9534f;
   color: white;
 }
 
-.confirm-btn:hover {
+.logout-popup .confirm-btn:hover {
   background-color: #B22222;
 }
 
-.cancel-btn {
+.logout-popup .cancel-btn {
   background-color: #007bff;
   color: white;
 }
 
-.cancel-btn:hover {
+.logout-popup .cancel-btn:hover {
   background-color: #00008B;
 }
 

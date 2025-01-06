@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import '../../styles/livro/HomeAluno.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface Livro {
   idLivro: number;
@@ -20,6 +20,9 @@ function HomeAluno() {
   const [livros, setLivros] = useState<Livro[]>([]);
   const [error, setError] = useState("");
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+  const [confirmLogout, setConfirmLogout] = useState(false); 
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchLivros = async () => {
@@ -40,6 +43,21 @@ function HomeAluno() {
     fetchLivros();
   }, []);
 
+  const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem("role");
+    localStorage.removeItem("idUser");
+    navigate("/");
+  }
+
+  const openLogoutPopup = () => {
+    setConfirmLogout(true);
+  }
+
+  const closeLogoutPopup = () => {
+    setConfirmLogout(false);
+  }
+
   return (
     <div className={`homeAluno ${isSidebarVisible ? "sidebar-visible" : ""}`}>
       <button
@@ -54,7 +72,7 @@ function HomeAluno() {
             <li><Link to={"/borrowed-books"}><button>Livros Emprestados</button></Link></li>
             <li><Link to={"/personal-info"}><button>Informações Pessoais</button></Link></li>
           </ul>
-          <button className="logout">Sair</button>
+          <button className="logout" onClick={openLogoutPopup}>Sair</button>
         </div>
       )}
       <div className="content">
@@ -80,6 +98,15 @@ function HomeAluno() {
         ) : (
           <p>Nenhum livro cadastrado.</p>
         )}
+         {confirmLogout && (
+        <div className="logout-popup">
+          <div className="popup-content">
+            <p>Tem certeza que deseja sair da conta?</p>
+            <button className="confirm-btn" onClick={logout}>Sim</button>
+            <button className="cancel-btn" onClick={closeLogoutPopup}>Não</button>
+          </div>  
+        </div>
+      )}
       </div>
     </div>
   );

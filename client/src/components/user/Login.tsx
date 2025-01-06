@@ -30,7 +30,7 @@ function Login() {
                 if(role === "aluno") {
                     navigate("/homealuno");
                 }else if(role === "professor") {
-                    navigate("homeprofessor");
+                    navigate("/homeprofessor");
                 }   
             }else{
                 alert("Preencha o email e senha");
