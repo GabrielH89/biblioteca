@@ -23,9 +23,9 @@ function Login() {
                 });
                 console.log("Response: " + response.data);
                 const {token, role, idUser} = response.data; // Supondo que o token esteja na resposta como 'token'
-                localStorage.setItem('token', token);
-                localStorage.setItem('role', role);
-                localStorage.setItem('idUser', idUser);
+                sessionStorage.setItem('token', token);
+                sessionStorage.setItem('role', role);
+                sessionStorage.setItem('idUser', idUser);
                 
                 if(role === "aluno") {
                     navigate("/homealuno");

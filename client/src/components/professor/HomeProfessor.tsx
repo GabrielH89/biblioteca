@@ -3,6 +3,7 @@ import axios from "axios";
 import AddFormLivro from "../livro/AddFormLivro"; // Importe o componente de formulário
 import '../../styles/livro/HomeProfessor.css';
 import { Link, useNavigate } from "react-router-dom";
+import DeleteLivroById from "../livro/DeleteLivroById";
 
 interface Livro {
   idLivro: number;
@@ -29,7 +30,7 @@ function HomeProfessor() {
   useEffect(() => {
     const fetchLivros = async () => {
       try {
-        const token = localStorage.getItem("token");
+        const token = sessionStorage.getItem("token");
         const response = await axios.get<Livro[]>("http://localhost:4000/livros", {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -49,9 +50,9 @@ function HomeProfessor() {
   };
 
   const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
-    localStorage.removeItem("idUser");
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("role");
+    sessionStorage.removeItem("idUser");
     navigate("/");
   }
 
@@ -62,6 +63,13 @@ function HomeProfessor() {
   const closeLogoutPopup = () => {
     setConfirmLogout(false);
   }
+
+  const handleLivroDeleted = (idLivro: number) => {
+    setLivros((prevLivros) => prevLivros.filter((livro) => livro.idLivro !== idLivro));
+  };
+  
+  
+  
 
   return (
     <div className={`homeProfessor ${isSidebarVisible ? "sidebar-visible" : ""}`}>
@@ -112,6 +120,7 @@ function HomeProfessor() {
                     <p>Editora: {livro.editora}</p>
                     <p>Ano: {livro.ano_publicacao}</p>
                     <p>Gênero: {livro.genero}</p>
+                    <DeleteLivroById idLivro={livro.idLivro} onDelete={() => handleLivroDeleted(livro.idLivro)} />
                   </div>
                 ))}
               </div>

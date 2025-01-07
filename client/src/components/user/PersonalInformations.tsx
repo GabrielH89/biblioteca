@@ -17,7 +17,7 @@ function PersonalInformations() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const token = localStorage.getItem('token');
+            const token = sessionStorage.getItem('token');
             const response = await axios.get<UserDatas>("http://localhost:4000/users", {
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -30,7 +30,7 @@ function PersonalInformations() {
 
     const deleteAccount = async () => {
         try {
-            const token = localStorage.getItem('token');
+            const token = sessionStorage.getItem('token');
             await axios.delete("http://localhost:4000/users/delete", {
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -44,7 +44,7 @@ function PersonalInformations() {
 
     const closeSuccessPopup = () => {
         setSuccessPopup(false);
-        localStorage.removeItem('token'); // Remover token do usuário
+        sessionStorage.removeItem('token'); // Remover token do usuário
         navigate("/"); // Redirecionar para a página inicial
     };
 

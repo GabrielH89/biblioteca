@@ -27,7 +27,7 @@ function HomeAluno() {
   useEffect(() => {
     const fetchLivros = async () => {
       try {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         const response = await axios.get<Livro[]>("http://localhost:4000/livros", {
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -44,9 +44,9 @@ function HomeAluno() {
   }, []);
 
   const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem("role");
-    localStorage.removeItem("idUser");
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem("role");
+    sessionStorage.removeItem("idUser");
     navigate("/");
   }
 

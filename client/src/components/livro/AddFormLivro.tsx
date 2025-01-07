@@ -16,7 +16,7 @@ function AddFormLivro({ onClose }: AddFormLivroProps) {
   const [professorId, setProfessorId] = useState<number | null>(null);
 
   useEffect(() => {
-    const idProfessor = localStorage.getItem("idProfessor");
+    const idProfessor = sessionStorage.getItem("idProfessor");
     if (idProfessor) {
       setProfessorId(Number(idProfessor));
     }
@@ -38,7 +38,7 @@ function AddFormLivro({ onClose }: AddFormLivroProps) {
     }
 
     try {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
       await axios.post("http://localhost:4000/livros", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
