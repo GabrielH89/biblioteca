@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios, { AxiosError } from "axios";
 import '../../styles/user/SignUp.css';
+import InputMask from 'react-input-mask';
 
 function SignUp() {
     const [name, setName] = useState("");
@@ -13,6 +14,15 @@ function SignUp() {
     const [matricula, setMatricula] = useState("");
     const [disciplina, setDisciplina] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+
+    useEffect(() => {
+        if (errorMessage) {
+            const timer = setTimeout(() => {
+                setErrorMessage("");
+            }, 5000); // Mensagem desaparece após 5 segundos
+            return () => clearTimeout(timer); // Limpa o temporizador se o componente for desmontado
+        }
+    }, [errorMessage]);
 
     const handleRoleChange = (selectedRole: string) => {
         setRole(selectedRole);
@@ -102,11 +112,10 @@ function SignUp() {
     return (
         <div>
             <form className="signUpForm" onSubmit={handleSignUp}>
-                {errorMessage && (
-                    <div className="error-message">
-                        {errorMessage}
-                    </div>
-                )}
+                {errorMessage && 
+                     <div className="error-message" style={{ backgroundColor: '#B22222', color: 'white', 
+                        padding: '10px', marginBottom: '10px', borderRadius: '5px', textAlign: 'center', fontSize: '1.1rem' }}>
+                {errorMessage}</div>}
                 <h2>Cadastro</h2>
                 <div className="formGroup">
                     <label>Nome:</label>
@@ -118,7 +127,9 @@ function SignUp() {
                 </div>
                 <div className="formGroup">
                     <label>Telefone:</label>
-                    <input type="text" value={telefone} onChange={(e) => setTelefone(e.target.value)} required />
+                    <InputMask mask="99-99999-9999" type="text" value={telefone}
+                    placeholder="Ex: XX-XXXXX-XXXX" onChange={(e) => setTelefone(e.target.value)} required
+                    />
                 </div>
                 <div className="formGroup">
                     <label>Senha:</label>
@@ -155,11 +166,8 @@ function SignUp() {
                 {role === "aluno" && (
                     <div className="formGroup">
                         <label>Matrícula:</label>
-                        <input
-                            type="text"
-                            value={matricula}
-                            onChange={(e) => setMatricula(e.target.value)}
-                            required
+                        <InputMask mask="99999" type="text" value={matricula}
+                        placeholder="5 dígitos(números)" onChange={(e) => setMatricula(e.target.value)} required
                         />
                     </div>
                 )}
