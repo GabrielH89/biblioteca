@@ -17,5 +17,6 @@ router.post("/livros", authenticateToken, checkRole(["professor"]), livroControl
 router.delete("/livros", authenticateToken, checkRole(["professor"]), livroController.deleteAll);
 router.delete("/livros/:id", authenticateToken, checkRole(["professor"]), livroController.deleteById);
 router.get("/livros", authenticateToken, livroController.getAll);
+router.put("/livros/:id", authenticateToken, checkRole(["professor"]), livroController.updateById);
 
 export default router;

@@ -38,11 +38,11 @@ export const create = async (req: CustomRequest, res: Response) => {
 
             const imageUrl = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
             
-            const newImage = await Livro.create({
+            const newLivro = await Livro.create({
                 titulo, autor, capa, editora, ano_publicacao, genero, idProfessor,
             })
 
-            return res.status(201).json({msg: "Livro criado com sucesso", newImage})
+            return res.status(201).json({msg: "Livro criado com sucesso", newLivro})
         })
     }catch(error) {
         res.status(500).json({msg: "Error " + error});

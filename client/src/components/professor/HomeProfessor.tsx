@@ -67,9 +67,6 @@ function HomeProfessor() {
   const handleLivroDeleted = (idLivro: number) => {
     setLivros((prevLivros) => prevLivros.filter((livro) => livro.idLivro !== idLivro));
   };
-  
-  
-  
 
   return (
     <div className={`homeProfessor ${isSidebarVisible ? "sidebar-visible" : ""}`}>
